@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Cowsay.Extensions.DependencyInjection" Version="1.1.10" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Orleans.Server" Version="3.6.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Grains\RpcDemo.Grains.CowsayGrain\RpcDemo.Grains.CowsayGrain.csproj" />
+      <ProjectReference Include="..\..\..\Grains\RpcDemo.Grains.GreetingGrain\RpcDemo.Grains.GreetingGrain.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Using Remove="System.Net.Http" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Shared\RpcDemo.Interfaces.ASCIIArt\RpcDemo.Interfaces.ASCIIArt.csproj" />
+      <ProjectReference Include="..\..\Shared\RpcDemo.Interfaces.Hello\RpcDemo.Interfaces.Hello.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Cowsay.Abstractions" Version="1.1.10" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+      <PackageReference Include="Microsoft.Orleans.CodeGenerator.MSBuild" Version="3.6.5">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+</Project>
