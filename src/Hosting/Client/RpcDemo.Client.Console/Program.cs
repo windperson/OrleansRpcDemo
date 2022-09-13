@@ -3,6 +3,7 @@ using Orleans;
 using Orleans.Configuration;
 using RpcDemo.Interfaces.ASCIIArt;
 using RpcDemo.Interfaces.Hello;
+using RpcDemo.Interfaces.ThrowExDemo;
 
 namespace RpcDemo.Client.Console
 {
@@ -25,6 +26,7 @@ namespace RpcDemo.Client.Console
                 {
                     parts.AddApplicationPart(typeof(IHelloGrain).Assembly).WithReferences();
                     parts.AddApplicationPart(typeof(ICowsayGrain).Assembly).WithReferences();
+                    parts.AddApplicationPart(typeof(IThrowExGrain).Assembly).WithReferences();
                 })
                 .ConfigureLogging(logging => logging.AddConsole())
                 .Build();
@@ -47,6 +49,30 @@ namespace RpcDemo.Client.Console
             var complexCowsayGrain = client.GetGrain<ICowsayGrain>("goat2");
             var complexCowsay = await complexCowsayGrain.Greet(message: "Awesome Orleans!", "Isak Pao");
             WriteLine($"\r\n---\r\nCall CowsayGrain.Greet(\"Awesome Orleans!\", \"Isak Pao\") =\r\n{complexCowsay}\r\n---");
+            WriteLine("\r\n>>> Press any key to continue to run the throw Exception demo <<<\r\n");
+            ReadKey();
+            
+            var throwExGrain = client.GetGrain<IThrowExGrain>(Guid.NewGuid());
+            try
+            {
+                await throwExGrain.CallThisWillThrowException("");
+            }
+            catch (ArgumentNullException ex)
+            {
+                WriteLine("Exception caught: " + ex.Message);
+                WriteLine("Exception is " + ex + "\r\n");
+            }
+
+            WriteLine("\r\n>>> Press any key to continue to run another throw Exception demo <<<\r\n");
+            ReadKey();
+            try
+            {
+                await throwExGrain.CallThisWillThrowException("custom exception");
+            }catch (Exception ex)
+            {
+                WriteLine("Exception caught: " + ex.Message);
+                WriteLine("Exception is " + ex + "\r\n");
+            }
 
             WriteLine("Demonstration finished, press any key to exit...");
             ReadKey();

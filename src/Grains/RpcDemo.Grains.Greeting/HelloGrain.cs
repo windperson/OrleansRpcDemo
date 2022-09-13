@@ -2,9 +2,9 @@ using Orleans;
 using RpcDemo.Common;
 using RpcDemo.Interfaces.Hello;
 
-namespace RpcDemo.Grains.GreetingGrain;
+namespace RpcDemo.Grains.Greeting;
 
-public class Hello : Grain, IHelloGrain
+public class HelloGrain : Grain, IHelloGrain
 {
     public Task<string> SayHello(string greeting)
     {

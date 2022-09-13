@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Interfaces.Hello", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Grains", "Grains", "{A521B39C-0CED-463E-99DE-EEBD4B8AB333}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Grains.GreetingGrain", "src\Grains\RpcDemo.Grains.GreetingGrain\RpcDemo.Grains.GreetingGrain.csproj", "{6BD10AD5-E43C-4C6B-947E-FDAF46E5BD41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Grains.Greeting", "src\Grains\RpcDemo.Grains.Greeting\RpcDemo.Grains.Greeting.csproj", "{6BD10AD5-E43C-4C6B-947E-FDAF46E5BD41}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5FA3F27D-9454-414A-9ECE-5A7174D6818A}"
 EndProject
@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Common", "src\Share
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Interfaces.ASCIIArt", "src\Shared\RpcDemo.Interfaces.ASCIIArt\RpcDemo.Interfaces.ASCIIArt.csproj", "{6FB5089D-6BD5-4CF1-A192-176D33D61B4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Grains.CowsayGrain", "src\Grains\RpcDemo.Grains.CowsayGrain\RpcDemo.Grains.CowsayGrain.csproj", "{F80E8440-A0BB-4199-871E-96231FF0BD57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Grains.Cowsay", "src\Grains\RpcDemo.Grains.Cowsay\RpcDemo.Grains.Cowsay.csproj", "{F80E8440-A0BB-4199-871E-96231FF0BD57}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{B29AE643-7832-425A-B714-5E2C5E8B8036}"
 EndProject
@@ -27,6 +27,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Hosting.Console", "src\Hosting\Server\RpcDemo.Hosting.Console\RpcDemo.Hosting.Console.csproj", "{610DFB71-57DF-4D22-8278-2701347983F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Client.Console", "src\Hosting\Client\RpcDemo.Client.Console\RpcDemo.Client.Console.csproj", "{8D8CB5A2-8A0F-4305-AA42-9B4C95384801}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Interfaces.ThrowExDemo", "src\Shared\RpcDemo.Interfaces.ThrowExDemo\RpcDemo.Interfaces.ThrowExDemo.csproj", "{98A6CDB1-2523-4BCD-8307-065778F7BF59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowsayGrain.Test", "tests\CowsayGrain.Test\CowsayGrain.Test.csproj", "{CC4D487F-203F-4B90-B2CE-58298CA682D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +48,8 @@ Global
 		{E593C3C4-E745-40DC-9943-40C73F87498A} = {B29AE643-7832-425A-B714-5E2C5E8B8036}
 		{610DFB71-57DF-4D22-8278-2701347983F2} = {E593C3C4-E745-40DC-9943-40C73F87498A}
 		{8D8CB5A2-8A0F-4305-AA42-9B4C95384801} = {7E68BBF0-4D6A-43AB-8312-D141E7A08A43}
+		{98A6CDB1-2523-4BCD-8307-065778F7BF59} = {8129734D-22A8-4028-A979-46B2303C2166}
+		{CC4D487F-203F-4B90-B2CE-58298CA682D4} = {5FA3F27D-9454-414A-9ECE-5A7174D6818A}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5F36099A-3400-484C-8242-5C11028A2427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -78,5 +84,13 @@ Global
 		{8D8CB5A2-8A0F-4305-AA42-9B4C95384801}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D8CB5A2-8A0F-4305-AA42-9B4C95384801}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D8CB5A2-8A0F-4305-AA42-9B4C95384801}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98A6CDB1-2523-4BCD-8307-065778F7BF59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98A6CDB1-2523-4BCD-8307-065778F7BF59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98A6CDB1-2523-4BCD-8307-065778F7BF59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98A6CDB1-2523-4BCD-8307-065778F7BF59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC4D487F-203F-4B90-B2CE-58298CA682D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC4D487F-203F-4B90-B2CE-58298CA682D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC4D487F-203F-4B90-B2CE-58298CA682D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC4D487F-203F-4B90-B2CE-58298CA682D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

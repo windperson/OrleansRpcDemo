@@ -4,15 +4,15 @@ using Orleans;
 using RpcDemo.Interfaces.ASCIIArt;
 using RpcDemo.Interfaces.Hello;
 
-namespace RpcDemo.Grains.CowsayGrain;
+namespace RpcDemo.Grains.Cowsay;
 
-public class GreetingCow : Grain, ICowsayGrain
+public class GreetingCowGrain : Grain, ICowsayGrain
 {
     private readonly ICattleFarmer _cattleFarmer;
     private string? _grainId;
-    private readonly ILogger<GreetingCow> _logger;
+    private readonly ILogger<GreetingCowGrain> _logger;
 
-    public GreetingCow(ICattleFarmer cattleFarmer, ILogger<GreetingCow> logger)
+    public GreetingCowGrain(ICattleFarmer cattleFarmer, ILogger<GreetingCowGrain> logger)
     {
         _cattleFarmer = cattleFarmer;
         _logger = logger;

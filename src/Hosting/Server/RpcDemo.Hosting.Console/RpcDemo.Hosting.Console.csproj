@@ -16,8 +16,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Grains\RpcDemo.Grains.CowsayGrain\RpcDemo.Grains.CowsayGrain.csproj" />
-      <ProjectReference Include="..\..\..\Grains\RpcDemo.Grains.GreetingGrain\RpcDemo.Grains.GreetingGrain.csproj" />
+      <ProjectReference Include="..\..\..\Grains\RpcDemo.Grains.Cowsay\RpcDemo.Grains.Cowsay.csproj" />
+      <ProjectReference Include="..\..\..\Grains\RpcDemo.Grains.Greeting\RpcDemo.Grains.Greeting.csproj" />
     </ItemGroup>
     
     <ItemGroup>

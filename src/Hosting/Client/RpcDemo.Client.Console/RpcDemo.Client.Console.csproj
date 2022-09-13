@@ -8,17 +8,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Using Remove="System.Net.Http"/>
+        <Using Remove="System.Net.Http" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\Shared\RpcDemo.Interfaces.ASCIIArt\RpcDemo.Interfaces.ASCIIArt.csproj"/>
-        <ProjectReference Include="..\..\..\Shared\RpcDemo.Interfaces.Hello\RpcDemo.Interfaces.Hello.csproj"/>
+        <ProjectReference Include="..\..\..\Shared\RpcDemo.Interfaces.ASCIIArt\RpcDemo.Interfaces.ASCIIArt.csproj" />
+        <ProjectReference Include="..\..\..\Shared\RpcDemo.Interfaces.Hello\RpcDemo.Interfaces.Hello.csproj" />
+        <ProjectReference Include="..\..\..\Shared\RpcDemo.Interfaces.ThrowExDemo\RpcDemo.Interfaces.ThrowExDemo.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0"/>
-        <PackageReference Include="Microsoft.Orleans.Client" Version="3.6.5"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Orleans.Client" Version="3.6.5" />
     </ItemGroup>
 
 </Project>

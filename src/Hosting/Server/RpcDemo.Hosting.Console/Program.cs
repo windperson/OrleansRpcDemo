@@ -4,8 +4,8 @@ using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
-using RpcDemo.Grains.CowsayGrain;
-using RpcDemo.Grains.GreetingGrain;
+using RpcDemo.Grains.Cowsay;
+using RpcDemo.Grains.Greeting;
 
 var siloHost = new SiloHostBuilder()
     .ConfigureServices(services => { services.AddCowsay(); })
@@ -18,8 +18,9 @@ var siloHost = new SiloHostBuilder()
     .Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
     .ConfigureApplicationParts(parts =>
     {
-        parts.AddApplicationPart(typeof(Hello).Assembly).WithReferences();
-        parts.AddApplicationPart(typeof(GreetingCow).Assembly).WithReferences();
+        parts.AddApplicationPart(typeof(HelloGrain).Assembly).WithReferences();
+        parts.AddApplicationPart(typeof(GreetingCowGrain).Assembly).WithReferences();
+        parts.AddApplicationPart(typeof(ThrowExDemoGrain).Assembly).WithReferences();
     })
     .ConfigureLogging(logging =>
     {
@@ -28,6 +29,7 @@ var siloHost = new SiloHostBuilder()
     })
     .Build();
 
+//Tricks to manually wait for Ctrl+C key press
 var waitForProcessShutdown = new ManualResetEvent(false);
 Console.CancelKeyPress += (sender, eventArgs) =>
 {

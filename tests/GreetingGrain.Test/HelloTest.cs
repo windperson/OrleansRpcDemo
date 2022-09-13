@@ -25,7 +25,7 @@ public class HelloTest
     [Fact]
     public async Task TestRecordStructSayHello()
     {
-            //Arrange
+        //Arrange
         var builder = new TestClusterBuilder();
         builder.AddSiloBuilderConfigurator<TestSiloConfigurator>();
         var cluster = builder.Build();
