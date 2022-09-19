@@ -48,8 +48,8 @@ public class CowsayTest
         
         //Assert
         const string startString =
-            @" _____________________________________
-/ ""Hello Orleans!""                    \
+            @" ____________________________________
+/ ""Hello Orleans!""                   \
 \ Tom at";
         const string endString =
             @"
