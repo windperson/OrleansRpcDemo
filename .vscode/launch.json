@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Server",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/Hosting/Server/RpcDemo.Hosting.Console/bin/Debug/net6.0/RpcDemo.Hosting.Console.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Hosting/Server/RpcDemo.Hosting.Console",
+            "console": "integratedTerminal",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Launch Client",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/Hosting/Client/RpcDemo.Client.Console/bin/Debug/net6.0/RpcDemo.Client.Console.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Hosting/Client/RpcDemo.Client.Console",
+            "console": "externalTerminal",
+            "stopAtEntry": false
+        }
+    ]
+}
