@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Orleans;
@@ -21,6 +22,7 @@ var siloHost = new SiloHostBuilder()
         parts.AddApplicationPart(typeof(HelloGrain).Assembly).WithReferences();
         parts.AddApplicationPart(typeof(GreetingCowGrain).Assembly).WithReferences();
         parts.AddApplicationPart(typeof(ThrowExDemoGrain).Assembly).WithReferences();
+        parts.AddApplicationPart(Assembly.LoadFrom("RpcDemo.My3rdPartyLibGen.dll"));
     })
     .ConfigureLogging(logging =>
     {

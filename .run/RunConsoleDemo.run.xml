@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Console Demo" type="CompoundRunConfigurationType">
+  <configuration default="false" name="RunConsoleDemo" type="CompoundRunConfigurationType">
     <toRun name="RpcDemo.Client.Console" type="DotNetProject" />
     <toRun name="RpcDemo.Hosting.Console" type="DotNetProject" />
     <method v="2" />

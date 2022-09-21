@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Interfaces.ThrowExD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowsayGrain.Test", "tests\CowsayGrain.Test\CowsayGrain.Test.csproj", "{CC4D487F-203F-4B90-B2CE-58298CA682D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.My3rdPartyLibGen", "src\Shared\RpcDemo.My3rdPartyLibGen\RpcDemo.My3rdPartyLibGen.csproj", "{FAA6E954-B978-46CF-A8D4-6B2148E2BA89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,7 @@ Global
 		{8D8CB5A2-8A0F-4305-AA42-9B4C95384801} = {7E68BBF0-4D6A-43AB-8312-D141E7A08A43}
 		{98A6CDB1-2523-4BCD-8307-065778F7BF59} = {8129734D-22A8-4028-A979-46B2303C2166}
 		{CC4D487F-203F-4B90-B2CE-58298CA682D4} = {5FA3F27D-9454-414A-9ECE-5A7174D6818A}
+		{FAA6E954-B978-46CF-A8D4-6B2148E2BA89} = {8129734D-22A8-4028-A979-46B2303C2166}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5F36099A-3400-484C-8242-5C11028A2427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -92,5 +95,9 @@ Global
 		{CC4D487F-203F-4B90-B2CE-58298CA682D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC4D487F-203F-4B90-B2CE-58298CA682D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC4D487F-203F-4B90-B2CE-58298CA682D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAA6E954-B978-46CF-A8D4-6B2148E2BA89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAA6E954-B978-46CF-A8D4-6B2148E2BA89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAA6E954-B978-46CF-A8D4-6B2148E2BA89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAA6E954-B978-46CF-A8D4-6B2148E2BA89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

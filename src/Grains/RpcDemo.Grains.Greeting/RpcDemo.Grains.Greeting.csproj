@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Shared\RpcDemo.Interfaces.Hello\RpcDemo.Interfaces.Hello.csproj" />
+      <ProjectReference Include="..\..\Shared\RpcDemo.My3rdPartyLibGen\RpcDemo.My3rdPartyLibGen.csproj" />
     </ItemGroup>
 
     <ItemGroup>
