@@ -4,6 +4,12 @@
     <ProjectReference Include="..\..\..\Grains\RpcDemo.Grains.Greeting\RpcDemo.Grains.Greeting.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Orleans.Server" Version="3.6.5" />
+  </ItemGroup>
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
