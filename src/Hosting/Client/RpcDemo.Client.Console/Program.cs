@@ -1,5 +1,6 @@
 ﻿using Orleans;
 using Orleans.Configuration;
+using RpcDemo.Interfaces.ASCIIArt;
 using RpcDemo.Interfaces.Hello;
 
 using static System.Console;
@@ -16,6 +17,7 @@ var client = new ClientBuilder()
     .ConfigureApplicationParts(parts =>
     {
         parts.AddApplicationPart(typeof(IHelloGrain).Assembly).WithReferences();
+        parts.AddApplicationPart(typeof(ICowsayGrain).Assembly).WithReferences();
     })
     .Build();
 
@@ -28,6 +30,11 @@ WriteLine("\r\n---\r\nOrleans Client connected\r\n---");
 var helloGrain = client.GetGrain<IHelloGrain>(0);
 var helloResult = await helloGrain.SayHello("Orleans");
 WriteLine($"\r\n---\r\nCall HelloGrain.SayHello(\"Orleans\") =\r\n{helloResult}\r\n---");
+
+var cowsayGrain = client.GetGrain<ICowsayGrain>("default");
+var cowsayResult = await cowsayGrain.Say("Orleans");
+WriteLine($"\r\n---\r\nCall CowsayGrain.Say(\"Orleans\") =\r\n{cowsayResult}\r\n---");
+
 WriteLine("Demonstration finished, press any key to exit...");
 ReadKey();
 

@@ -1,12 +1,15 @@
 ﻿using System.Net;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
+using RpcDemo.Grains.Cowsay;
 using RpcDemo.Grains.Greeting;
 
 var siloHost = new SiloHostBuilder()
         .UseLocalhostClustering()
+        .ConfigureServices(services => { services.AddCowsay(); })
         .Configure<ClusterOptions>(options =>
         {
             options.ClusterId = "console-host-01";
@@ -16,6 +19,7 @@ var siloHost = new SiloHostBuilder()
         .ConfigureApplicationParts(parts =>
         {
             parts.AddApplicationPart(typeof(HelloGrain).Assembly).WithReferences();
+            parts.AddApplicationPart(typeof(CowsayGrain).Assembly).WithReferences();
         })
         .ConfigureLogging(logging =>
         {
