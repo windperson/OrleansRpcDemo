@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Grains.Counters", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CounterGrains.Tests", "tests\CounterGrains.Tests\CounterGrains.Tests.csproj", "{12EA52F5-D2C9-4636-B10B-851A7690BA59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Hosting.AspNetCoreWebApi", "src\Hosting\Server\RpcDemo.Hosting.AspNetCoreWebApi\RpcDemo.Hosting.AspNetCoreWebApi.csproj", "{449BE6B8-A62F-4766-B003-D744F0733498}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,10 @@ Global
 		{12EA52F5-D2C9-4636-B10B-851A7690BA59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12EA52F5-D2C9-4636-B10B-851A7690BA59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12EA52F5-D2C9-4636-B10B-851A7690BA59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{449BE6B8-A62F-4766-B003-D744F0733498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{449BE6B8-A62F-4766-B003-D744F0733498}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{449BE6B8-A62F-4766-B003-D744F0733498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{449BE6B8-A62F-4766-B003-D744F0733498}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BEE899FD-F57B-4361-8931-F7F2F97AFF2F} = {B39D78E4-5DD3-4559-9461-4A3E23B07F33}
@@ -105,5 +111,6 @@ Global
 		{98BCB36B-F477-4B9B-BFFB-E96C2D9A700D} = {B39D78E4-5DD3-4559-9461-4A3E23B07F33}
 		{5C5B016C-2B89-45C6-A6C0-3907FDBA0119} = {D714D2E6-0C37-4884-8A30-230248C60316}
 		{12EA52F5-D2C9-4636-B10B-851A7690BA59} = {565414CC-E5BB-4EC6-AEEB-C0A1F81ACA8E}
+		{449BE6B8-A62F-4766-B003-D744F0733498} = {8AC771FA-7582-4901-B546-86484A718DD2}
 	EndGlobalSection
 EndGlobal

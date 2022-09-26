@@ -24,6 +24,27 @@
             "cwd": "${workspaceFolder}/src/Hosting/Client/RpcDemo.Client.Console",
             "console": "externalTerminal",
             "stopAtEntry": false
+        },
+        {
+            "name": "Launch WebApi",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build webapi",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/Hosting/Server/RpcDemo.Hosting.AspNetCoreWebApi/bin/Debug/net6.0/RpcDemo.Hosting.AspNetCoreWebApi.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+https://\\S+:([0-9]+)",
+                "uriFormat": "https://localhost:%s/swagger/index.html"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "console": "integratedTerminal"
         }
     ]
 }
