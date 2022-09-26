@@ -5,11 +5,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseOrleans(siloBuilder =>
 {
     siloBuilder.UseLocalhostClustering();
-    siloBuilder.AddAzureTableGrainStorage(
+    // siloBuilder.AddAzureTableGrainStorage(
+    //     name: "demo_counters", options =>
+    //     {
+    //         options.UseJson = true;
+    //         options.ConfigureTableServiceClient("UseDevelopmentStorage=true");
+    //     });
+    siloBuilder.AddAzureBlobGrainStorage(
         name: "demo_counters", options =>
         {
-            options.UseJson = true;
-            options.ConfigureTableServiceClient("UseDevelopmentStorage=true");
+            options.UseJson = false;
+            options.ConfigureBlobServiceClient("UseDevelopmentStorage=true");
         });
 });
 
