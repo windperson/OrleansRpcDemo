@@ -6,13 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseOrleans(siloBuilder =>
 {
     siloBuilder.UseLocalhostClustering();
-    siloBuilder.AddMemoryGrainStorage("demo_counters");
-    // siloBuilder.AddAdoNetGrainStorage("demo_counters", options =>
-    // {
-    //     options.Invariant = "Npgsql";
-    //     options.ConnectionString = "Server=localhost;Port=5432;Username=dev;Password=P@s$1234;Database=OrleansDemo;";
-    //     options.UseJsonFormat = true;
-    // });
+    siloBuilder.AddAdoNetGrainStorage("demo_counters", options =>
+    {
+        options.Invariant = "Npgsql";
+        options.ConnectionString = "Server=localhost;Port=5432;Username=dev;Password=P@ss1234;Database=OrleansDemo;";
+        options.UseJsonFormat = true;
+    });
 });
 
 // Add services to the container.
