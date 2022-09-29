@@ -1,0 +1,32 @@
+﻿@page "/counter"
+@using Orleans
+@using RpcDemo.Interfaces.Counter
+@inject IClusterClient ClusterClient
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private ICounterGrain? counter;
+    private int currentCount = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        counter = ClusterClient.GetGrain<ICounterGrain>(Guid.Empty);
+        currentCount = await counter.GetCountAsync();
+    }
+
+    private async void IncrementCount()
+    {
+        await counter!.IncrementAsync();
+        currentCount = await counter.GetCountAsync();
+        StateHasChanged();
+    }
+
+}

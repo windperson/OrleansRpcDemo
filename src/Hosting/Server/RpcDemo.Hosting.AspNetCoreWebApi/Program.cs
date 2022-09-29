@@ -5,18 +5,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseOrleans(siloBuilder =>
 {
     siloBuilder.UseLocalhostClustering();
-    // siloBuilder.AddAzureTableGrainStorage(
-    //     name: "demo_counters", options =>
-    //     {
-    //         options.UseJson = true;
-    //         options.ConfigureTableServiceClient("UseDevelopmentStorage=true");
-    //     });
-    siloBuilder.AddAzureBlobGrainStorage(
-        name: "demo_counters", options =>
-        {
-            options.UseJson = false;
-            options.ConfigureBlobServiceClient("UseDevelopmentStorage=true");
-        });
+    siloBuilder.AddAdoNetGrainStorage("demo_counters", options =>
+    {
+        options.Invariant = "System.Data.SqlClient";
+        options.ConnectionString = "Server=(localdb)\\mssqllocaldb;Database=OrleansDemo;Trusted_Connection=True;";
+        options.UseJsonFormat = true;
+    });
 });
 
 // Add services to the container.
