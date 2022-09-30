@@ -1,6 +1,7 @@
 ﻿using Orleans;
 using Orleans.Configuration;
 using RpcDemo.Interfaces.ASCIIArt;
+using RpcDemo.Interfaces.Cancellable;
 using RpcDemo.Interfaces.Hello;
 using RpcDemo.Interfaces.ThrowExDemo;
 using static System.Console;
@@ -19,11 +20,12 @@ var client = new ClientBuilder()
         parts.AddApplicationPart(typeof(IHelloGrain).Assembly).WithReferences();
         parts.AddApplicationPart(typeof(ICowsayGrain).Assembly).WithReferences();
         parts.AddApplicationPart(typeof(IThrowExDemoGrain).Assembly).WithReferences();
+        parts.AddApplicationPart(typeof(ILongJobProxy).Assembly).WithReferences();
     })
     .Build();
 
 WriteLine(
-        "Please wait until Orleans Server is started and ready for connections, then press any key to start connect...");
+    "Please wait until Orleans Server is started and ready for connections, then press any key to start connect...");
 ReadKey();
 await client.Connect();
 WriteLine("\r\n---\r\nOrleans Client connected\r\n---");
@@ -66,6 +68,33 @@ try
 {
     var throwDemoGrain = client.GetGrain<IThrowExDemoGrain>(0);
     await throwDemoGrain.CallWllThrowMyCustomException();
+}
+catch (Exception e)
+{
+    WriteLine(e);
+}
+
+WriteLine("\r\n\r\n---\r\n\r\nPress any key to run cancel RPC demo:\r\n");
+ReadKey();
+
+var longJobProxy = client.GetGrain<ILongJobProxy>("job_proxy");
+Console.CancelKeyPress += async (source, args) =>
+{
+    args.Cancel = true;
+    WriteLine("Cancelling ProcessString()...");
+    await longJobProxy.CancelAsync();
+};
+
+WriteLine("Start ProcessString()..., press Ctrl+C to cancel");
+try
+{
+    await longJobProxy.StartAsync("long job demo");
+    var longJobResult = await longJobProxy.GetResultAsync();
+
+    if (!string.IsNullOrEmpty(longJobResult))
+    {
+        WriteLine($"\r\n---\r\nCall LongJobGrain.ProcessString(\"Cancellable RPC Demo\") =\r\n{longJobResult}\r\n---");
+    }
 }
 catch (Exception e)
 {

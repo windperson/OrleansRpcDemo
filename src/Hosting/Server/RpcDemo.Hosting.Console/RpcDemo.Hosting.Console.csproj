@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Grains\RpcDemo.Grains.Cancellable\RpcDemo.Grains.Cancellable.csproj" />
     <ProjectReference Include="..\..\..\Grains\RpcDemo.Grains.Cowsay\RpcDemo.Grains.Cowsay.csproj" />
     <ProjectReference Include="..\..\..\Grains\RpcDemo.Grains.Greeting\RpcDemo.Grains.Greeting.csproj" />
   </ItemGroup>
@@ -17,6 +18,11 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+    <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
   </PropertyGroup>
 
 </Project>

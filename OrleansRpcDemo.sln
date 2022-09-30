@@ -43,6 +43,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Hosting.BlazorServe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Interfaces.ThrowExDemo", "src\Shared\RpcDemo.Interfaces.ThrowExDemo\RpcDemo.Interfaces.ThrowExDemo.csproj", "{DC6956AB-CBA6-48F1-BF74-7B82C1650815}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Interfaces.Cancellable", "src\Shared\RpcDemo.Interfaces.Cancellable\RpcDemo.Interfaces.Cancellable.csproj", "{AF9E84A5-919A-4668-B362-3E8A0814B834}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcDemo.Grains.Cancellable", "src\Grains\RpcDemo.Grains.Cancellable\RpcDemo.Grains.Cancellable.csproj", "{956982EA-BD02-4623-B4C0-819837953E65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,6 +112,14 @@ Global
 		{DC6956AB-CBA6-48F1-BF74-7B82C1650815}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC6956AB-CBA6-48F1-BF74-7B82C1650815}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC6956AB-CBA6-48F1-BF74-7B82C1650815}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF9E84A5-919A-4668-B362-3E8A0814B834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF9E84A5-919A-4668-B362-3E8A0814B834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF9E84A5-919A-4668-B362-3E8A0814B834}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF9E84A5-919A-4668-B362-3E8A0814B834}.Release|Any CPU.Build.0 = Release|Any CPU
+		{956982EA-BD02-4623-B4C0-819837953E65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{956982EA-BD02-4623-B4C0-819837953E65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{956982EA-BD02-4623-B4C0-819837953E65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{956982EA-BD02-4623-B4C0-819837953E65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BEE899FD-F57B-4361-8931-F7F2F97AFF2F} = {B39D78E4-5DD3-4559-9461-4A3E23B07F33}
@@ -126,5 +138,7 @@ Global
 		{449BE6B8-A62F-4766-B003-D744F0733498} = {8AC771FA-7582-4901-B546-86484A718DD2}
 		{F1836B1A-A44F-4839-AA9B-E52BC39E580F} = {8AC771FA-7582-4901-B546-86484A718DD2}
 		{DC6956AB-CBA6-48F1-BF74-7B82C1650815} = {B39D78E4-5DD3-4559-9461-4A3E23B07F33}
+		{AF9E84A5-919A-4668-B362-3E8A0814B834} = {B39D78E4-5DD3-4559-9461-4A3E23B07F33}
+		{956982EA-BD02-4623-B4C0-819837953E65} = {D714D2E6-0C37-4884-8A30-230248C60316}
 	EndGlobalSection
 EndGlobal
