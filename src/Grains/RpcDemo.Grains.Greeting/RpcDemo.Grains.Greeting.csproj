@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\RpcDemo.Interfaces.Hello\RpcDemo.Interfaces.Hello.csproj" />
+    <ProjectReference Include="..\..\Shared\RpcDemo.Interfaces.ThrowExDemo\RpcDemo.Interfaces.ThrowExDemo.csproj" />
   </ItemGroup>
 
   <ItemGroup>

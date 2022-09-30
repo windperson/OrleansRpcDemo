@@ -2,7 +2,7 @@
 using Orleans.Configuration;
 using RpcDemo.Interfaces.ASCIIArt;
 using RpcDemo.Interfaces.Hello;
-
+using RpcDemo.Interfaces.ThrowExDemo;
 using static System.Console;
 
 WriteLine("\r\n---Orleans RPCDemo Client---");
@@ -18,6 +18,7 @@ var client = new ClientBuilder()
     {
         parts.AddApplicationPart(typeof(IHelloGrain).Assembly).WithReferences();
         parts.AddApplicationPart(typeof(ICowsayGrain).Assembly).WithReferences();
+        parts.AddApplicationPart(typeof(IThrowExDemoGrain).Assembly).WithReferences();
     })
     .Build();
 
@@ -35,7 +36,43 @@ var cowsayGrain = client.GetGrain<ICowsayGrain>("default");
 var cowsayResult = await cowsayGrain.Say("Orleans");
 WriteLine($"\r\n---\r\nCall CowsayGrain.Say(\"Orleans\") =\r\n{cowsayResult}\r\n---");
 
-WriteLine("Demonstration finished, press any key to exit...");
+WriteLine("\r\n\r\n---\r\n\r\nPress any key to run simple try & catch demo:\r\n");
+ReadKey();
+
+try
+{
+    var throwDemoGrain = client.GetGrain<IThrowExDemoGrain>(0);
+    _ = await throwDemoGrain.CallWillThrowIfEmptyInput(null!);
+}
+catch (Exception e)
+{
+    WriteLine(e);
+}
+
+WriteLine("\r\n\r\n---\r\n\r\nPress any key to run catch ex inside grain to grain RPC:\r\n");
+ReadKey();
+try
+{
+    _ = await helloGrain.SayHello(string.Empty);
+}
+catch (Exception e)
+{
+    WriteLine(e);
+}
+
+WriteLine("\r\n\r\n---\r\n\r\nPress any key to run throw custom exception RPC:\r\n");
+ReadKey();
+try
+{
+    var throwDemoGrain = client.GetGrain<IThrowExDemoGrain>(0);
+    await throwDemoGrain.CallWllThrowMyCustomException();
+}
+catch (Exception e)
+{
+    WriteLine(e);
+}
+
+WriteLine("\r\n---\r\nDemonstration finished, press any key to exit...");
 ReadKey();
 
 await client.Close();
