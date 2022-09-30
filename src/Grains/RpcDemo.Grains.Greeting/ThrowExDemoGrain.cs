@@ -20,7 +20,3 @@ public class ThrowExDemoGrain : Grain, IThrowExDemoGrain
         throw new MyCustomException();
     }
 }
-
-public class MyCustomException : Exception
-{
-}

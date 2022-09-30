@@ -1,3 +1,6 @@
+using Microsoft.Extensions.Configuration;
+using Orleans;
+using Orleans.Hosting;
 using Orleans.TestingHost;
 using RpcDemo.Grains.Greeting;
 using RpcDemo.Interfaces.ThrowExDemo;
@@ -10,16 +13,38 @@ public class ThrowExDemoGrainTest
 
     public ThrowExDemoGrainTest()
     {
-        _builder = SetupTestClusterBuilder<TestSiloConfigurator>();
+        _builder = SetupTestClusterBuilder<TwoTestSiloConfigurator, TestClientConfigurator>();
     }
 
-    private TestClusterBuilder SetupTestClusterBuilder<T>() where T : ISiloConfigurator, new()
+    private class TwoTestSiloConfigurator : ISiloConfigurator
+    {
+        public void Configure(ISiloBuilder siloBuilder)
+        {
+        }
+    }
+
+    private class TestClientConfigurator : IClientBuilderConfigurator
+    {
+        public void Configure(IConfiguration configuration, IClientBuilder clientBuilder)
+        {
+            clientBuilder.ConfigureApplicationParts(
+                parts =>
+                {
+                    parts.AddApplicationPart(typeof(IThrowExDemoGrain).Assembly).WithReferences();
+                });
+        }
+    }
+
+    private TestClusterBuilder SetupTestClusterBuilder<TSiloConfigurator, TClientConfigurator>()
+        where TSiloConfigurator : ISiloConfigurator, new()
+        where TClientConfigurator : IClientBuilderConfigurator, new()
     {
         var builder = new TestClusterBuilder();
-        builder.AddSiloBuilderConfigurator<T>();
+        builder.AddSiloBuilderConfigurator<TSiloConfigurator>();
+        builder.AddClientBuilderConfigurator<TClientConfigurator>();
         return builder;
     }
-    
+
     [Fact]
     public async Task Test_CallWillThrowIfEmptyInput()
     {
@@ -28,7 +53,7 @@ public class ThrowExDemoGrainTest
         await cluster.DeployAsync();
         var grain = cluster.GrainFactory.GetGrain<IThrowExDemoGrain>(0);
         const string input = "orleans";
-        
+
         //Act & Assert
         var normalOutput = await grain.CallWillThrowIfEmptyInput(input);
         Assert.Equal(input, normalOutput);
@@ -42,8 +67,8 @@ public class ThrowExDemoGrainTest
         // Arrange
         await using var cluster = _builder.Build();
         await cluster.DeployAsync();
-        var grain = cluster.GrainFactory.GetGrain<IThrowExDemoGrain>(0);
-        
+        var grain = cluster.Client.GetGrain<IThrowExDemoGrain>(0);
+
         //Act & Assert
         await Assert.ThrowsAsync<MyCustomException>(() => grain.CallWllThrowMyCustomException());
     }
