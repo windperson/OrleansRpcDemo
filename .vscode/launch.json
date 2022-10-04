@@ -68,6 +68,29 @@
                 "/Views": "${workspaceFolder}/src/Hosting/Server/RpcDemo.Hosting.BlazorServer/Views"
             },
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Launch Minimal Api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build minimal api",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/Hosting/Server/RpcDemo.Hosting.MinimalApi/bin/Debug/net6.0/RpcDemo.Hosting.MinimalApi.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Hosting/Server/RpcDemo.Hosting.MinimalApi",
+            "stopAtEntry": false,
+            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/src/Hosting/Server/RpcDemo.Hosting.MinimalApi/Views"
+            },
+            "console": "integratedTerminal"
         }
     ]
 }
