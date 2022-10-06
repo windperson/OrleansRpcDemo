@@ -69,6 +69,39 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build stream demo",
+            "dependsOn": [
+                "build stream server",
+                "build stream client"
+            ],
+            "dependsOrder": "sequence",
+            "group": "build"
+        },
+        {
+            "label": "build stream client",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/Hosting/Client/RpcDemo.Client.StreamConsole/RpcDemo.Client.StreamConsole.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build stream server",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/Hosting/Server/RpcDemo.Hosting.Worker/RpcDemo.Hosting.Worker.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
         }
     ]
 }

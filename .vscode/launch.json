@@ -91,6 +91,30 @@
                 "/Views": "${workspaceFolder}/src/Hosting/Server/RpcDemo.Hosting.MinimalApi/Views"
             },
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Launch Stream Silo",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build stream server",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/Hosting/Server/RpcDemo.Hosting.Worker/bin/Debug/net6.0/RpcDemo.Hosting.Worker.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Hosting/Server/RpcDemo.Hosting.Worker",
+            "console": "integratedTerminal",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Launch Stream Client",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build stream client",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/Hosting/Client/RpcDemo.Client.StreamConsole/bin/Debug/net6.0/RpcDemo.Client.StreamConsole.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Hosting/Client/RpcDemo.Client.StreamConsole",
+            "console": "externalTerminal",
+            "stopAtEntry": false
         }
     ]
 }
