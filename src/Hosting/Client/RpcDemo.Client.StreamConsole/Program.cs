@@ -1,5 +1,8 @@
-﻿using Orleans;
+﻿using Microsoft.Extensions.Options;
+using Orleans;
 using Orleans.Configuration;
+using Orleans.Hosting;
+using Orleans.Streams;
 using RpcDemo.Interfaces.EventStreams;
 using Serilog;
 
@@ -13,7 +16,13 @@ var clientBuilder = new ClientBuilder()
     {
         options.ClusterId = "client1";
         options.ServiceId = "Stream-Demo";
-    }).ConfigureApplicationParts(parts =>
+    })
+    .AddAzureQueueStreams(StreamConstant.DefaultStreamProviderName,
+        (OptionsBuilder<AzureQueueOptions> optionsBuilder) =>
+        {
+            optionsBuilder.Configure(options => { options.ConfigureQueueServiceClient("UseDevelopmentStorage=true"); });
+        })
+    .ConfigureApplicationParts(parts =>
     {
         parts.AddApplicationPart(typeof(IProducerGrain).Assembly).WithReferences();
         parts.AddApplicationPart(typeof(IManualConsumerGrain).Assembly).WithReferences();
@@ -55,6 +64,21 @@ await receiver2.UnSubscribe();
 
 Log.Logger.Information("\r\nPress any key to demo implicit stream subscription\r\n");
 Console.ReadKey();
+await producer.StartProducing(StreamConstant.ImplicitSubscribeStreamNamespace, key);
+
+Log.Logger.Information("\r\nPress any key to stop streaming in Producer Grain\r\n");
+Console.ReadKey();
+await producer.StopProducing();
+
+Log.Logger.Information("\r\nPress any key to demo client-side stream subscription\r\n");
+Console.ReadKey();
+var stream = client.GetStreamProvider(StreamConstant.DefaultStreamProviderName)
+    .GetStream<StreamDto>(key, StreamConstant.ImplicitSubscribeStreamNamespace);
+await stream.SubscribeAsync((StreamDto dto, StreamSequenceToken _) =>
+{
+    Log.Logger.Information("Received message from stream: {dto}", dto);
+    return Task.CompletedTask;
+});
 await producer.StartProducing(StreamConstant.ImplicitSubscribeStreamNamespace, key);
 
 Log.Logger.Information("\r\nPress any key to stop streaming in Producer Grain\r\n");
