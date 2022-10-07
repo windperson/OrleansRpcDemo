@@ -41,6 +41,7 @@ IHost host = Host.CreateDefaultBuilder(args)
         {
             parts.AddApplicationPart(typeof(ManualConsumerGrain).Assembly).WithReferences();
             parts.AddApplicationPart(typeof(ProducerGrain).Assembly).WithReferences();
+            parts.AddApplicationPart(typeof(ConsumerGrain).Assembly).WithReferences();
         });
     })
     .ConfigureServices(services =>

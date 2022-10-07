@@ -9,9 +9,9 @@ using RpcDemo.Interfaces.EventStreams;
 
 namespace EventStreamGrains.Tests;
 
-public class ManualConsumerGrainTest
+public class ConsumerGrainTest
 {
-    private static Mock<ILogger<ManualConsumerGrain>>? _loggerMock;
+    private static Mock<ILogger<ConsumerGrain>>? _loggerMock;
 
     #region Test Silo Setup
     private class TestSiloAndClientConfigurator : ISiloConfigurator, IClientBuilderConfigurator
@@ -20,7 +20,7 @@ public class ManualConsumerGrainTest
 
         public void Configure(ISiloBuilder siloBuilder)
         {
-            _loggerMock = new Mock<ILogger<ManualConsumerGrain>>();
+            _loggerMock = new Mock<ILogger<ConsumerGrain>>();
             var loggerFactorMock = new Mock<ILoggerFactory>();
             loggerFactorMock.Setup(x => x.CreateLogger(It.IsAny<string>())).Returns(_loggerMock.Object);
 
@@ -39,7 +39,7 @@ public class ManualConsumerGrainTest
                             TimerTick = timerTick;
                         }
                     });
-            siloBuilder.AddMemoryGrainStorage("consumer_grain")
+            siloBuilder
                 .AddMemoryGrainStorage("PubSubStore")
                 .AddMemoryStreams<DefaultMemoryMessageBodySerializer>(StreamConstant.DefaultStreamProviderName)
                 .ConfigureServices(services =>
@@ -55,9 +55,9 @@ public class ManualConsumerGrainTest
         }
     }
     #endregion
-
+    
     [Fact]
-    public async Task Test_ManualConsumerGrain_Receive()
+    public async Task Test_ConsumerGrain_Receive()
     {
         // Arrange
         var builder = new TestClusterBuilder();
@@ -65,13 +65,10 @@ public class ManualConsumerGrainTest
         var testCluster = builder.Build();
         await testCluster.DeployAsync();
         var key = Guid.NewGuid();
-        const string streamNamespace = "TestNamespace";
         var producer = testCluster.GrainFactory.GetGrain<IProducerGrain>("sender1");
-        var consumer = testCluster.GrainFactory.GetGrain<IManualConsumerGrain>("receiver1");
 
         // Act
-        await producer.StartProducing(streamNamespace, key);
-        await consumer.Subscribe(streamNamespace, key);
+        await producer.StartProducing(StreamConstant.ImplicitSubscribeStreamNamespace, key);
         //Manual Invoke Timer to force produce message to consumer
         var timerTick = TestSiloAndClientConfigurator.TimerTick;
         Assert.NotNull(timerTick);

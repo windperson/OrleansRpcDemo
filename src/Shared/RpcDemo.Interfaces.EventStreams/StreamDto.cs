@@ -6,4 +6,5 @@ public record struct StreamDto(int Serial, string Message, DateTimeOffset Timest
 public static class StreamConstant
 {
     public const string DefaultStreamProviderName = "MyDefaultStreamProvider";
+    public const string ImplicitSubscribeStreamNamespace = "event-streaming-02";
 }

@@ -17,6 +17,7 @@ var clientBuilder = new ClientBuilder()
     {
         parts.AddApplicationPart(typeof(IProducerGrain).Assembly).WithReferences();
         parts.AddApplicationPart(typeof(IManualConsumerGrain).Assembly).WithReferences();
+        parts.AddApplicationPart(typeof(IConsumerGrain).Assembly).WithReferences();
     })
     .ConfigureLogging(logging => logging.AddSerilog());
 
@@ -51,6 +52,14 @@ Console.ReadKey();
 await producer.StopProducing();
 await receiver1.UnSubscribe();
 await receiver2.UnSubscribe();
+
+Log.Logger.Information("\r\nPress any key to demo implicit stream subscription\r\n");
+Console.ReadKey();
+await producer.StartProducing(StreamConstant.ImplicitSubscribeStreamNamespace, key);
+
+Log.Logger.Information("\r\nPress any key to stop streaming in Producer Grain\r\n");
+Console.ReadKey();
+await producer.StopProducing();
 
 Log.Logger.Information("Stopped streaming in Producer Grain, press any key to disconnect from Silo and exit");
 Console.ReadKey();
